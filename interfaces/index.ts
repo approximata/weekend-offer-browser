@@ -1,10 +1,10 @@
 export interface SearchResult {
     mainTitle: string;
     mainImage: string;
-    exactMatch: Offer[];
+    exactMatch: OfferModel[];
 }
 
-export interface Offer {
+export interface OfferModel {
     id: number;
     label: string;
     location: Location;
@@ -17,6 +17,7 @@ export interface Offer {
     mainImage: MainImage;
     uri: string;
 }
+
 export interface Location {
     longitude: number;
     latitude: number;
@@ -28,6 +29,7 @@ export interface Location {
     lng: number;
     lat: number;
 }
+
 export interface CompleteAddress {
     number: string;
     street: string;
@@ -35,6 +37,7 @@ export interface CompleteAddress {
     cityName: string;
     streetAddress: string;
 }
+
 export interface LocationsHierarchyEntity {
     type: string;
     label: string;
@@ -42,10 +45,12 @@ export interface LocationsHierarchyEntity {
     code?: string | null;
     isTopCity?: boolean | null;
 }
+
 export interface Review {
     average: number;
     count: number;
 }
+
 export interface WeekendEntity {
     id: number;
     label: string;
@@ -63,6 +68,7 @@ export interface WeekendEntity {
     lastMinute: boolean;
     flashDeal: boolean;
 }
+
 export interface Price {
     sellPrice: number;
     refPrice: number;
@@ -71,21 +77,25 @@ export interface Price {
     nights: number;
     nbRooms: number;
 }
+
 export interface CancellationPolicy {
     cancellableUntil: number;
     cancellable: boolean;
     poplidays: boolean;
 }
+
 export interface TagsEntity {
     name: string;
     id: number;
 }
+
 export interface HeadwordsEntity {
     label: string;
 }
 export interface Expiration {
     expired: boolean;
 }
+
 export interface MainImage {
     url: string;
 }

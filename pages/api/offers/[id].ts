@@ -1,4 +1,5 @@
-import { getAllData } from '../../../helpers/getData';
+import { server } from '../../../config';
+import { getData, searchResult } from '../../../helpers/getData';
 
 interface Request {
     query: { id: number };
@@ -6,9 +7,10 @@ interface Request {
 
 export default async function handler(req: Request, res: any) {
     try {
-        const result = await getAllData();
-        const offer = result.exactMatch.find(offer => offer.id = req.query.id);
-    
+        if(!searchResult.exactMatch) {
+            await getData(5);
+        }
+        const offer = searchResult.exactMatch.find(offer => offer.id = req.query.id);
         if (offer) {
             res.status(200).json(offer);
         } else {

@@ -1,5 +1,5 @@
-import { getAllData } from "../../../../helpers/getData";
-import { PAGE_SIZE } from "../../../../constant"
+import { searchResult } from "../../../../helpers/getData";
+import { pageSize } from "../../../../config"
 
 interface Request {
     query: { page: number}
@@ -7,10 +7,9 @@ interface Request {
 
 export default async function handler(req: Request, res: any) {
     try {
-        const result = await getAllData();
-        const pageOffers = result.exactMatch.filter((offer, idx) => {
-            const endIdx = req.query.page * PAGE_SIZE;
-            const initIdx = endIdx - PAGE_SIZE;
+        const pageOffers = searchResult.exactMatch.filter((offer, idx) => {
+            const endIdx = req.query.page * pageSize;
+            const initIdx = endIdx - pageSize;
             return idx <= endIdx && idx >= initIdx;
         });
         if(pageOffers.length > 0) {

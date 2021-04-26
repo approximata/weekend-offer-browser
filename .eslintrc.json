@@ -1,0 +1,20 @@
+{
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:react-hooks/recommended"
+    ],
+    "rules": {
+        "react/react-in-jsx-scope": "off"
+    },
+    "globals": {
+        "React": "writable"
+    },
+    "parserOptions": {
+        "ecmaVersion": 2017,
+        "sourceType": "module"
+    },
+    "env": {
+        "es6": true
+    }
+}

@@ -1,8 +1,11 @@
 import { SearchResult } from "../interfaces";
-import { URL } from '../constant';
+import { externalUrl } from '../config';
 
-export const getAllData = async (): Promise<SearchResult> => {
-    const res = await fetch(URL!);
-    const data = await res.json();
-    return data;
+export let searchResult = {} as SearchResult;
+
+export const getData = async (limit: number) => {
+    const url = `${externalUrl!}&limit=${limit}`
+    const res = await fetch(url);
+    searchResult = await res.json();
 };
+
