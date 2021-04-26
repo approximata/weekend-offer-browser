@@ -8,7 +8,7 @@ interface Props {
     offersFromServer: OfferModel[];
 }
 
-export const Home = ({ offersFromServer }: Props) => {
+const Home = ({ offersFromServer }: Props) => {
     const [isOfferLoaded, setIsOfferLoaded] = useState<boolean>(false);
 
     useEffect(() => {
@@ -34,3 +34,6 @@ export const getServerSideProps = async () => {
     const offersFromServer = offers;
     return { props: { offersFromServer } };
 };
+
+
+export default Home; 
