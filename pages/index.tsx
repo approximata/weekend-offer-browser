@@ -17,7 +17,7 @@ const Home = ({ offersFromServer }: Props): ReactNode => {
     useEffect(() => {
     const loadAllData = async (): Promise<void> => {
         await fetch(`${apiServerUrl}/api/offers?limit=${maximumResult}`);
-        setAllDataLoaded(true)
+        setAllDataLoaded(true);
     };
       loadAllData();
     }, [offersFromServer])
