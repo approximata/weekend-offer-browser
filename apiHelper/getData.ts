@@ -38,7 +38,6 @@ const fetchData = async (limit: number): Promise<SearchResult> => {
 }
 
 export const getData = async (limit: number, forceFetch = false): Promise<SearchResult> => {
-    console.log(`limit: ${limit}, force: ${forceFetch}`)
     if(!isCacheExist() || isCacheExpired() || forceFetch) { 
         const data = await fetchData(limit);
         writeDataToFile(data);
@@ -49,6 +48,5 @@ export const getData = async (limit: number, forceFetch = false): Promise<Search
 
 export const getDataFromCacheFirst = async (): Promise<SearchResult> => {
     if (isCacheExist() && !isCacheExpired()) return readDataFromFile();
-    console.log('reload from everything')
     return await getData(maximumResult);
 }

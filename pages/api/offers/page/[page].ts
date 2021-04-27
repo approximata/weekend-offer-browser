@@ -1,4 +1,4 @@
-import { getDataFromCacheFirst } from "../../../../server/getData";
+import { getDataFromCacheFirst } from "../../../../apiHelper/getData";
 import { pageSize } from "../../../../config"
 import { NextApiResponse } from "next";
 
@@ -11,8 +11,6 @@ export default async function handler(req: Request, res: NextApiResponse): Promi
         const searchResult = await getDataFromCacheFirst();
         const offersLength = searchResult.exactMatch.length;
         const pageNumber = req.query.page;
-        console.log(`size searchresult match: ${offersLength}`);
-        console.log(`page: ${req.query.page}`);
         const offersOnPage = searchResult.exactMatch.filter((offer, idx) => {
             const endIdx = req.query.page * pageSize;
             const initIdx = endIdx - pageSize;

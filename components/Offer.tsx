@@ -9,8 +9,6 @@ interface Props {
 }
 
 const Offer = ({offer}: Props): ReactElement => {
-
-    console.log(offer);
     const router = useRouter();
 
     const fallback_image = 'https://approximatastockphotos.s3-eu-west-1.amazonaws.com/Summer-Sea-03.jpeg'

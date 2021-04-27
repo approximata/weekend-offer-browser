@@ -1,5 +1,5 @@
 import { NextApiResponse } from 'next';
-import { getDataFromCacheFirst } from '../../../server/getData';
+import { getDataFromCacheFirst } from '../../../apiHelper/getData';
 
 interface Request {
     query: { id: number };

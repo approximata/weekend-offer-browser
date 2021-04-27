@@ -2,6 +2,8 @@ import { apiServerUrl, maximumResult, pageSize } from '../config'
 import OfferList from '../components/OfferList'
 import { OfferModel } from '../interfaces'
 import { ReactNode, useEffect, useState } from 'react';
+import Link from 'next/link'
+import pageStyles from '../styles/Page.module.css';
 
 
 interface Props {
@@ -10,23 +12,19 @@ interface Props {
 }
 
 const Home = ({ offersFromServer }: Props): ReactNode => {
-    const [isInitalOffersLoaded, setIInitalOffersLoaded] = useState<boolean>(
-        false
-    );
+    const [allDataLoaded, setAllDataLoaded] = useState<boolean>(false);
 
     useEffect(() => {
     const loadAllData = async (): Promise<void> => {
         await fetch(`${apiServerUrl}/api/offers?limit=${maximumResult}&forcefetch=true`);
+        setAllDataLoaded(true)
     };
-      if (offersFromServer.length > 0) {
-        setIInitalOffersLoaded(true);
-        loadAllData();
-      }
+      loadAllData();
     }, [offersFromServer])
     return (
-        <div>
+        <div className={pageStyles.page}>
             <OfferList offerList={offersFromServer} />
-            {isInitalOffersLoaded && <div>loaded </div>}
+            {allDataLoaded && <Link href='/offers/page/2'>I Want More</Link>}
         </div>
     );
 }
