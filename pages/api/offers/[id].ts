@@ -1,5 +1,6 @@
 import { NextApiResponse } from 'next';
-import { getDataFromCacheFirst } from '../../../apiHelper/getData';
+import { getData } from '../../../apiHelper/getData';
+import { maximumResult } from '../../../config';
 
 interface Request {
     query: { id: number };
@@ -7,7 +8,7 @@ interface Request {
 
 export default async function handler(req: Request, res: NextApiResponse): Promise<void> {
     try {   
-        const searchResult = await getDataFromCacheFirst();
+        const searchResult = await getData(maximumResult);
         const result = searchResult.exactMatch.find(
             (offer) => (offer.id === Number(req.query.id))
         );

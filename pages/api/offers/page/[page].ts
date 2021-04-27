@@ -1,5 +1,5 @@
-import { getDataFromCacheFirst } from "../../../../apiHelper/getData";
-import { pageSize } from "../../../../config"
+import { getData } from "../../../../apiHelper/getData";
+import { maximumResult, pageSize } from "../../../../config"
 import { NextApiResponse } from "next";
 
 interface Request {
@@ -8,7 +8,7 @@ interface Request {
 
 export default async function handler(req: Request, res: NextApiResponse): Promise<void> {
     try {
-        const searchResult = await getDataFromCacheFirst();
+        const searchResult = await getData(maximumResult);
         const offersLength = searchResult.exactMatch.length;
         const pageNumber = req.query.page;
         const offersOnPage = searchResult.exactMatch.filter((offer, idx) => {

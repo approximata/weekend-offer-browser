@@ -16,7 +16,7 @@ const Home = ({ offersFromServer }: Props): ReactNode => {
 
     useEffect(() => {
     const loadAllData = async (): Promise<void> => {
-        await fetch(`${apiServerUrl}/api/offers?limit=${maximumResult}&forcefetch=true`);
+        await fetch(`${apiServerUrl}/api/offers?limit=${maximumResult}`);
         setAllDataLoaded(true)
     };
       loadAllData();
@@ -32,7 +32,7 @@ const Home = ({ offersFromServer }: Props): ReactNode => {
 export const getServerSideProps = async (): Promise<{
     props: { offersFromServer: OfferModel[] };
 }> => {
-    const res = await fetch(`${apiServerUrl}/api/offers?limit=${pageSize}&forcefetch=true`);
+    const res = await fetch(`${apiServerUrl}/api/offers?limit=${pageSize}`);
     const { offers } = await res.json();
     const offersFromServer = offers;
     return { props: { offersFromServer } };
