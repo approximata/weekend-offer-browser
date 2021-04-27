@@ -1,9 +1,11 @@
 import { SearchResult } from "../interfaces";
 import { externalUrl, maximumResult } from '../config';
 import * as fsPromise  from 'fs/promises';
+import path from 'path';
 import fs from 'fs';
 
-const cacheFilePath = './cache.json';
+const cacheFilePath = path.join('.',__dirname, 'public', 'cache.json');
+
 const cacheTimeSec = 300;
 
 const writeDataToFile = (data: SearchResult): void => {
