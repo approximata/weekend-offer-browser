@@ -1,0 +1,21 @@
+.wrapper {
+  display: flex;
+  margin: 5%;
+}
+
+.link a{
+   float: left;
+   padding: 8px 16px;
+   text-decoration: none;
+}
+
+ .active {
+   background-color: #C91BA3;
+   border-radius: 5px;
+ }
+
+ .link a:hover:not(.active) {
+   color: #111;
+   background-color: #ddd;
+   border-radius: 5px;
+ }

@@ -4,13 +4,19 @@ export interface SearchResult {
     exactMatch: OfferModel[];
 }
 
+export interface PageProps {
+    offers: OfferModel[];
+    offersLength: number;
+    pageNumber: number
+}
+
 export interface OfferModel {
     id: number;
     label: string;
     location: Location;
     review: Review;
-    weekend?: WeekendEntity[] | null;
-    facility?: string[] | null;
+    weekend ? : WeekendEntity[] | null;
+    facility ? : string[] | null;
     star: number;
     connectivity: boolean;
     h2yClientId: number;
@@ -23,7 +29,7 @@ export interface Location {
     latitude: number;
     label: string;
     completeAddress: CompleteAddress;
-    locationsHierarchy?: LocationsHierarchyEntity[] | null;
+    locationsHierarchy ? : LocationsHierarchyEntity[] | null;
     uri: string;
     address: string;
     lng: number;
@@ -42,8 +48,8 @@ export interface LocationsHierarchyEntity {
     type: string;
     label: string;
     id: number;
-    code?: string | null;
-    isTopCity?: boolean | null;
+    code ? : string | null;
+    isTopCity ? : boolean | null;
 }
 
 export interface Review {
@@ -57,13 +63,13 @@ export interface WeekendEntity {
     packageId: string;
     price: Price;
     imageUrl: string;
-    topTheme?: string[] | null;
-    programIntro?: string[] | null;
+    topTheme ? : string[] | null;
+    programIntro ? : string[] | null;
     cancellationPolicy: CancellationPolicy;
     cancellationDeadline: string;
     uri: string;
-    tags?: TagsEntity[] | null;
-    headwords?: HeadwordsEntity[] | null;
+    tags ? : TagsEntity[] | null;
+    headwords ? : HeadwordsEntity[] | null;
     expiration: Expiration;
     lastMinute: boolean;
     flashDeal: boolean;

@@ -1,18 +1,18 @@
-import { server } from '../../../config';
-import { getData, searchResult } from '../../../helpers/getData';
+import { NextApiResponse } from 'next';
+import { getDataFromCacheFirst } from '../../../server/getData';
 
 interface Request {
     query: { id: number };
 }
 
-export default async function handler(req: Request, res: any) {
-    try {
-        if(!searchResult.exactMatch) {
-            await getData(5);
-        }
-        const offer = searchResult.exactMatch.find(offer => offer.id = req.query.id);
-        if (offer) {
-            res.status(200).json(offer);
+export default async function handler(req: Request, res: NextApiResponse): Promise<void> {
+    try {   
+        const searchResult = await getDataFromCacheFirst();
+        const result = searchResult.exactMatch.find(
+            (offer) => (offer.id === Number(req.query.id))
+        );
+        if (result) {
+            res.status(200).json(result);
         } else {
             res.status(404).json({
                 message: 'Could not find offer',

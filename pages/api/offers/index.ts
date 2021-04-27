@@ -1,33 +1,17 @@
-import { getData, searchResult } from '../../../helpers/getData';
-import { OfferModel } from '../../../interfaces';
+import { NextApiResponse } from 'next';
+import { getData } from '../../../server/getData';
 
-interface Response {
-    status: (
-        arg0: number
-    ) => {
-        (): any;
-        new (): any;
-        json: {
-            (arg0: {
-                mainTitle?: string;
-                mainImage?: string;
-                offers?: OfferModel[];
-                offersLength?: number;
-                message?: string;
-            }): void;
-            new (): any;
-        };
+interface Request {
+    query: { 
+        limit: number;
+        forcefetch?: string;
     };
 }
 
-interface Request {
-    query: { limit: any };
-}
-
-export default async function handler(req: Request, res: Response) {
+export default async function handler(req: Request, res: NextApiResponse): Promise<void> {
     try {
-        await getData(req.query.limit || 5);
-        const { mainTitle, mainImage, exactMatch } = searchResult;
+        const isFetchForced = req.query.forcefetch?.toString() === 'true';
+        const { mainTitle, mainImage, exactMatch }  = await getData(req.query.limit || 5, isFetchForced);
         res.status(200).json({
             mainTitle,
             mainImage,
@@ -36,7 +20,7 @@ export default async function handler(req: Request, res: Response) {
         });
     } catch (error) {
         res.status(500).json({
-            message: `Something went wrong. :( | Error: ${error}`,
+            message: `Something went wrong. :( | ${error}`,
         });
     }
 }

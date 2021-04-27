@@ -1,35 +1,40 @@
-import { server } from '../config'
+import { apiServerUrl, maximumResult, pageSize } from '../config'
 import OfferList from '../components/OfferList'
 import { OfferModel } from '../interfaces'
-import { useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 
 
 interface Props {
     offersFromServer: OfferModel[];
+    offersLength: number;
 }
 
-const Home = ({ offersFromServer }: Props) => {
-    const [isOfferLoaded, setIsOfferLoaded] = useState<boolean>(false);
+const Home = ({ offersFromServer }: Props): ReactNode => {
+    const [isInitalOffersLoaded, setIInitalOffersLoaded] = useState<boolean>(
+        false
+    );
 
     useEffect(() => {
-       const loadAllData = async () => {
-           await fetch(`${server}/api/offers?limit=30`);
-       };
+    const loadAllData = async (): Promise<void> => {
+        await fetch(`${apiServerUrl}/api/offers?limit=${maximumResult}&forcefetch=true`);
+    };
       if (offersFromServer.length > 0) {
-        setIsOfferLoaded(true);
+        setIInitalOffersLoaded(true);
         loadAllData();
       }
     }, [offersFromServer])
     return (
         <div>
             <OfferList offerList={offersFromServer} />
-            {isOfferLoaded && <div>loaded</div>}
+            {isInitalOffersLoaded && <div>loaded </div>}
         </div>
     );
 }
 
-export const getServerSideProps = async () => {
-    const res = await fetch(`${server}/api/offers`);
+export const getServerSideProps = async (): Promise<{
+    props: { offersFromServer: OfferModel[] };
+}> => {
+    const res = await fetch(`${apiServerUrl}/api/offers?limit=${pageSize}&forcefetch=true`);
     const { offers } = await res.json();
     const offersFromServer = offers;
     return { props: { offersFromServer } };

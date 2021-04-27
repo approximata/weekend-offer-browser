@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { ReactElement } from 'react'
 
 interface Props {
     title: string;
@@ -6,7 +7,7 @@ interface Props {
     description: string;
 }
 
-const Meta = ({ title, keywords, description }: Props) => {
+const Meta = ({ title, keywords, description }: Props): ReactElement => {
   return (
     <Head>
       <meta name='viewport' content='width=device-width, initial-scale=1' />

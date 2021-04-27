@@ -1,6 +1,7 @@
+import { ReactElement } from 'react';
 import headerStyles from '../styles/Header.module.css'
 
-const Header = () => {
+const Header = (): ReactElement => {
   return (
       <div>
           <h1 className={headerStyles.title}>
