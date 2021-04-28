@@ -4,7 +4,7 @@ import * as fsPromise  from 'fs/promises';
 import path from 'path';
 import fs from 'fs';
 
-const cacheFilePath = path.join(process.cwd(), 'public', 'cache.json');
+const cacheFilePath = path.join(__dirname, '_files', 'cache.json');
 
 const cacheTimeSec = 300;
 

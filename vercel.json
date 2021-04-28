@@ -1,0 +1,7 @@
+{
+    "functions": {
+        "apiHelper/getData.ts": {
+            "includeFiles": "_files/**"
+        }
+    }
+}
