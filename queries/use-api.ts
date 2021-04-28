@@ -17,6 +17,7 @@ const useApi = (limit = pageSize, forceFetch = false): Response => {
         response: [],
     });
 
+    // eslint-disable-next-line
     const fetchData = useRef((url: string) => {});
 
      fetchData.current = async (url) => {
