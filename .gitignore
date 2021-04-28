@@ -34,4 +34,4 @@ yarn-error.log*
 .vercel
 
 #cache
-/public/cache.json
+public/cache.json
