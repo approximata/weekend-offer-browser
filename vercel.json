@@ -1,6 +1,6 @@
 {
     "functions": {
-        "apiHelper/getData.ts": {
+        "api/helper/getData.ts": {
             "includeFiles": "_files/**"
         }
     }

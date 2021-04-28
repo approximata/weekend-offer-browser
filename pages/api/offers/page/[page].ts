@@ -1,4 +1,4 @@
-import { getDataFromCacheFirst } from "../../../../apiHelper/getData";
+import { getDataFromCacheFirst } from "../../helper/getData";
 import { pageSize } from "../../../../config"
 import { NextApiResponse } from "next";
 

@@ -1,5 +1,5 @@
 import { NextApiResponse } from 'next';
-import { getData } from '../../../apiHelper/getData';
+import { getData } from '../helper/getData';
 
 interface Request {
     query: { 
