@@ -7,6 +7,7 @@ import Pagination from '../../../../components/Pagination';
 import pageStyles from '../../../../styles/Page.module.css';
 
 
+
 interface Context {
     params: { page: number };
 }

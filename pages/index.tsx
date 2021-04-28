@@ -1,9 +1,11 @@
-import { apiServerUrl, maximumResult, pageSize } from '../config'
+import { apiServerUrl, ApiStates, maximumResult, pageSize } from '../config'
 import OfferList from '../components/OfferList'
 import { OfferModel } from '../interfaces'
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode } from 'react';
 import Link from 'next/link'
 import pageStyles from '../styles/Page.module.css';
+import useApi from '../queries/use-api';
+
 
 
 interface Props {
@@ -12,19 +14,24 @@ interface Props {
 }
 
 const Home = ({ offersFromServer }: Props): ReactNode => {
-    const [allDataLoaded, setAllDataLoaded] = useState<boolean>(false);
+    const { apiState, apiError } = useApi(maximumResult, true);
 
-    useEffect(() => {
-    const loadAllData = async (): Promise<void> => {
-        await fetch(`${apiServerUrl}/api/offers?limit=${maximumResult}&forcefetch=true`);
-        setAllDataLoaded(true)
-    };
-      loadAllData();
-    }, [offersFromServer])
     return (
         <div className={pageStyles.page}>
+
             <OfferList offerList={offersFromServer} />
-            {allDataLoaded && <Link href='/offers/page/2'>I Want More</Link>}
+
+            {apiState === ApiStates.LOADING && (
+                <div>Loading more...</div>
+            )}
+            {apiState === ApiStates.SUCCESS && (
+                <Link href='/offers/page/2'>I Want More</Link>
+            )}
+            {apiState === ApiStates.ERROR && (
+                <div>
+                    Something went wrong while fatching all data: {apiError}
+                </div>
+            )}
         </div>
     );
 }

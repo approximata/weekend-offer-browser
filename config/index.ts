@@ -4,3 +4,9 @@ export const apiServerUrl = isDev ? 'http://localhost:3000' : 'https://weekend-o
 export const externalUrl = process.env.MAIN_URL;
 export const pageSize = 5;
 export const maximumResult = 50;
+
+export enum ApiStates {
+    LOADING = 'LOADING',
+    SUCCESS = 'SUCCESS',
+    ERROR = 'ERROR',
+}
